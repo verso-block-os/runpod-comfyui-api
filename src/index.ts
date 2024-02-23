@@ -1,43 +1,44 @@
-import "dotenv/config";
-import { serve } from "@hono/node-server";
-import { Hono } from "hono";
-import { getImages, getWebsocketClient, getWorkflow } from "./utils";
+import {
+  getImages,
+  getWebsocketClient,
+  getWorkflow,
+  internalServerError,
+  jsonHeaders,
+  notFound,
+} from "./utils";
 import { v4 } from "uuid";
 
-const app = new Hono();
-
-app.post("/", async (c) => {
-  try {
-    const { prompt } = await c.req.json<{
-      prompt: string;
-    }>();
-
-    const clientId = v4();
-    const workflow = getWorkflow(prompt);
-    const websocket = getWebsocketClient(clientId);
-
-    const outputs = await getImages(websocket, workflow, clientId);
-
-    const result: { data: string }[] = [];
-
-    for (const nodeId in outputs) {
-      const images = outputs[nodeId]!;
-      for (const image of images) {
-        const buffer = Buffer.from(await image.arrayBuffer());
-        result.push({
-          data: buffer.toString("base64"),
-        });
-      }
-    }
-
-    return c.json(result);
-  } catch (e) {
-    console.log(e);
-    return c.text("Something went wrong.", 500);
-  }
-});
-
-serve({
-  fetch: app.fetch,
+Bun.serve({
   port: 1337,
+  fetch: async (req) => {
+    if (req.method !== "POST") return new Response(null, notFound);
+    try {
+      const { prompt }: { prompt: string } = await req.json();
+
+      const clientId = v4();
+      const workflow = getWorkflow(prompt);
+      const websocket = getWebsocketClient(clientId);
+
+      const outputs = await getImages(websocket, workflow, clientId);
+
+      const results: { data: string }[] = [];
+
+      for (const nodeId in outputs) {
+        const images = outputs[nodeId]!;
+        for (const image of images) {
+          const buffer = Buffer.from(await image.arrayBuffer());
+          results.push({
+            data: buffer.toString("base64"),
+          });
+        }
+      }
+
+      return new Response(JSON.stringify(results), jsonHeaders);
+    } catch (e) {
+      console.log(e);
+      return new Response("Something went wrong", internalServerError);
+    }
+  },
 });
+
+console.log("Server running at http://localhost:1337/");

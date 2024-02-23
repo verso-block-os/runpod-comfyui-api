@@ -1,5 +1,5 @@
 import { COMFYUI_URL, PROTOCOL, WSPROTOCOL } from "./constants";
-import WaifuWorkflow from "./workflow.json";
+import ComfyUIWorkflow from "./workflow.json";
 import WebSocket from "ws";
 
 export async function queuePrompt(
@@ -69,7 +69,6 @@ export async function getImages(
   prompt: string,
   clientId: string,
 ): Promise<Record<string, Blob[]>> {
-  // Queue the prompt and get the prompt_id
   const promptResponse = await queuePrompt(prompt, clientId);
   const promptId = promptResponse.prompt_id;
   const outputImages: Record<string, Blob[]> = {};
@@ -114,7 +113,7 @@ export async function getImages(
 
 export const getWorkflow = (prompt: string) => {
   return JSON.parse(
-    JSON.stringify(WaifuWorkflow)
+    JSON.stringify(ComfyUIWorkflow)
       .replace("{{prompt}}", prompt)
       .replace(
         "{{seed}}",
@@ -128,3 +127,7 @@ export const getWebsocketClient = (clientId: string) => {
     `${WSPROTOCOL}://${COMFYUI_URL}/ws?clientId=${clientId}`,
   );
 };
+
+export const jsonHeaders = { headers: { "Content-Type": "application/json" } },
+  notFound = { status: 404 },
+  internalServerError = { status: 500 };
