@@ -19,7 +19,7 @@
   },
   "4": {
     "inputs": {
-      "ckpt_name": "Counterfeit-V3.0.safetensors"
+      "ckpt_name": "ZavyComic.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -49,7 +49,7 @@
   },
   "7": {
     "inputs": {
-      "text": "(bad-artist:1), (worst quality, low quality:1.4) embedding:easynegative, child, kid, teenager, young",
+      "text": "(bad-artist:1), (worst quality, low quality:1.4) embedding:easynegative, child, kid, little girl",
       "clip": ["15", 0]
     },
     "class_type": "CLIPTextEncode",
@@ -67,6 +67,48 @@
       "title": "VAE Decode"
     }
   },
+  "12": {
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "13": {
+    "inputs": {
+      "upscale_by": 2,
+      "seed": 345662552866162,
+      "steps": 25,
+      "cfg": 3,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 0.15,
+      "mode_type": "Linear",
+      "tile_width": 1024,
+      "tile_height": 1536,
+      "mask_blur": 8,
+      "tile_padding": 32,
+      "seam_fix_mode": "None",
+      "seam_fix_denoise": 0.15,
+      "seam_fix_width": 64,
+      "seam_fix_mask_blur": 8,
+      "seam_fix_padding": 16,
+      "force_uniform_tiles": true,
+      "tiled_decode": false,
+      "image": ["8", 0],
+      "model": ["17", 0],
+      "positive": ["6", 0],
+      "negative": ["7", 0],
+      "vae": ["4", 2],
+      "upscale_model": ["12", 0]
+    },
+    "class_type": "UltimateSDUpscale",
+    "_meta": {
+      "title": "Ultimate SD Upscale"
+    }
+  },
   "15": {
     "inputs": {
       "stop_at_clip_layer": -2,
@@ -79,7 +121,7 @@
   },
   "16": {
     "inputs": {
-      "lora_name": "more_details.safetensors",
+      "lora_name": "DetailedEyes_XLv3.safetensors",
       "strength_model": 1,
       "strength_clip": 1,
       "model": ["4", 0],
@@ -92,7 +134,7 @@
   },
   "17": {
     "inputs": {
-      "lora_name": "DetailedEyes_V3.safetensors",
+      "lora_name": "arcane_offset.safetensors",
       "strength_model": 1,
       "strength_clip": 1,
       "model": ["16", 0],
@@ -103,9 +145,9 @@
       "title": "Load LoRA"
     }
   },
-  "20": {
+  "18": {
     "inputs": {
-      "images": ["8", 0]
+      "images": ["13", 0]
     },
     "class_type": "PreviewImage",
     "_meta": {
