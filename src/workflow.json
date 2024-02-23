@@ -19,7 +19,7 @@
   },
   "4": {
     "inputs": {
-      "ckpt_name": "ZavyComic.safetensors"
+      "ckpt_name": "Counterfeit-V3.0.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -103,7 +103,7 @@
       "title": "Load LoRA"
     }
   },
-  "19": {
+  "20": {
     "inputs": {
       "images": ["8", 0]
     },
