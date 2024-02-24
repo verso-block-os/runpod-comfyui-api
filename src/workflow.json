@@ -19,7 +19,7 @@
   },
   "4": {
     "inputs": {
-      "ckpt_name": "revAmimated_v122EOL.safetensors"
+      "ckpt_name": "revAnimated_v122EOL.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -79,7 +79,7 @@
   "13": {
     "inputs": {
       "upscale_by": 2,
-      "seed": 345662552866162,
+      "seed": "{{seed}}",
       "steps": 25,
       "cfg": 3,
       "sampler_name": "euler_ancestral",
