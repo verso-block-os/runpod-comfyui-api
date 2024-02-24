@@ -2,114 +2,117 @@
   "3": {
     "inputs": {
       "seed": "{{seed}}",
-      "steps": 25,
-      "cfg": 3,
+      "steps": 20,
+      "cfg": 4,
       "sampler_name": "euler_ancestral",
-      "scheduler": "normal",
+      "scheduler": "simple",
       "denoise": 1,
-      "model": ["17", 0],
+      "model": ["41", 0],
       "positive": ["6", 0],
       "negative": ["7", 0],
-      "latent_image": ["5", 0]
+      "latent_image": ["34", 0]
     },
     "class_type": "KSampler",
     "_meta": {
       "title": "KSampler"
     }
   },
-  "4": {
-    "inputs": {
-      "ckpt_name": "revAnimated_v122EOL.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Load Checkpoint"
-    }
-  },
-  "5": {
-    "inputs": {
-      "width": 512,
-      "height": 512,
-      "batch_size": 1
-    },
-    "class_type": "EmptyLatentImage",
-    "_meta": {
-      "title": "Empty Latent Image"
-    }
-  },
   "6": {
     "inputs": {
       "text": "{{prompt}}",
-      "clip": ["15", 0]
+      "clip": ["41", 1]
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
+      "title": "CLIP Text Encode (Positive Prompt)"
     }
   },
   "7": {
     "inputs": {
-      "text": "(bad-artist:1), (worst quality, low quality:1.4) embedding:easynegative, child, kid, teenager, young",
-      "clip": ["15", 0]
+      "text": "",
+      "clip": ["41", 1]
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
+      "title": "CLIP Text Encode (Negative Prompt)"
     }
   },
   "8": {
     "inputs": {
-      "samples": ["3", 0],
-      "vae": ["4", 2]
+      "samples": ["33", 0],
+      "vae": ["42", 2]
     },
     "class_type": "VAEDecode",
     "_meta": {
       "title": "VAE Decode"
     }
   },
-  "15": {
+  "9": {
     "inputs": {
-      "stop_at_clip_layer": -2,
-      "clip": ["17", 1]
-    },
-    "class_type": "CLIPSetLastLayer",
-    "_meta": {
-      "title": "CLIP Set Last Layer"
-    }
-  },
-  "16": {
-    "inputs": {
-      "lora_name": "more_details.safetensors",
-      "strength_model": 1,
-      "strength_clip": 1,
-      "model": ["4", 0],
-      "clip": ["4", 1]
-    },
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "Load LoRA"
-    }
-  },
-  "17": {
-    "inputs": {
-      "lora_name": "DetailedEyes_XLv3.safetensors",
-      "strength_model": 1,
-      "strength_clip": 1,
-      "model": ["16", 0],
-      "clip": ["16", 1]
-    },
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "Load LoRA"
-    }
-  },
-  "19": {
-    "inputs": {
+      "filename_prefix": "ComfyUI",
       "images": ["8", 0]
     },
-    "class_type": "PreviewImage",
+    "class_type": "SaveImage",
     "_meta": {
-      "title": "Preview Image"
+      "title": "Save Image"
+    }
+  },
+  "33": {
+    "inputs": {
+      "seed": 937734706696022,
+      "steps": 10,
+      "cfg": 1.1,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": ["42", 0],
+      "positive": ["36", 0],
+      "negative": ["7", 0],
+      "latent_image": ["34", 1]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "34": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "compression": 42,
+      "batch_size": 1
+    },
+    "class_type": "StableCascade_EmptyLatentImage",
+    "_meta": {
+      "title": "StableCascade_EmptyLatentImage"
+    }
+  },
+  "36": {
+    "inputs": {
+      "conditioning": ["6", 0],
+      "stage_c": ["3", 0]
+    },
+    "class_type": "StableCascade_StageB_Conditioning",
+    "_meta": {
+      "title": "StableCascade_StageB_Conditioning"
+    }
+  },
+  "41": {
+    "inputs": {
+      "ckpt_name": "stable_cascade_stage_c.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "42": {
+    "inputs": {
+      "ckpt_name": "stable_cascade_stage_b.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
     }
   }
 }
