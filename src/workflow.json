@@ -7,7 +7,7 @@
       "sampler_name": "euler_ancestral",
       "scheduler": "simple",
       "denoise": 1,
-      "model": ["41", 0],
+      "model": ["30", 0],
       "positive": ["6", 0],
       "negative": ["7", 0],
       "latent_image": ["34", 0]
@@ -20,52 +20,69 @@
   "6": {
     "inputs": {
       "text": "{{prompt}}",
-      "clip": ["41", 1]
+      "clip": ["37", 0]
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP Text Encode (Positive Prompt)"
+      "title": "CLIP Text Encode (Prompt)"
     }
   },
   "7": {
     "inputs": {
       "text": "",
-      "clip": ["41", 1]
+      "clip": ["37", 0]
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP Text Encode (Negative Prompt)"
+      "title": "CLIP Text Encode (Prompt)"
     }
   },
   "8": {
     "inputs": {
       "samples": ["33", 0],
-      "vae": ["42", 2]
+      "vae": ["29", 0]
     },
     "class_type": "VAEDecode",
     "_meta": {
       "title": "VAE Decode"
     }
   },
-  "9": {
+  "29": {
     "inputs": {
-      "filename_prefix": "ComfyUI",
-      "images": ["8", 0]
+      "vae_name": "stage_a.safetensors"
     },
-    "class_type": "SaveImage",
+    "class_type": "VAELoader",
     "_meta": {
-      "title": "Save Image"
+      "title": "Load VAE"
+    }
+  },
+  "30": {
+    "inputs": {
+      "unet_name": "stage_c_bf16.safetensors"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNETLoader"
+    }
+  },
+  "32": {
+    "inputs": {
+      "unet_name": "stage_b_bf16.safetensors"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNETLoader"
     }
   },
   "33": {
     "inputs": {
-      "seed": 937734706696022,
+      "seed": 281917012594276,
       "steps": 10,
       "cfg": 1.1,
       "sampler_name": "euler_ancestral",
       "scheduler": "simple",
       "denoise": 1,
-      "model": ["42", 0],
+      "model": ["32", 0],
       "positive": ["36", 0],
       "negative": ["7", 0],
       "latent_image": ["34", 1]
@@ -97,22 +114,23 @@
       "title": "StableCascade_StageB_Conditioning"
     }
   },
-  "41": {
+  "37": {
     "inputs": {
-      "ckpt_name": "stable_cascade_stage_c.safetensors"
+      "clip_name": "model.safetensors",
+      "type": "stable_cascade"
     },
-    "class_type": "CheckpointLoaderSimple",
+    "class_type": "CLIPLoader",
     "_meta": {
-      "title": "Load Checkpoint"
+      "title": "Load CLIP"
     }
   },
-  "42": {
+  "41": {
     "inputs": {
-      "ckpt_name": "stable_cascade_stage_b.safetensors"
+      "images": ["8", 0]
     },
-    "class_type": "CheckpointLoaderSimple",
+    "class_type": "PreviewImage",
     "_meta": {
-      "title": "Load Checkpoint"
+      "title": "Preview Image"
     }
   }
 }
