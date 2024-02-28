@@ -1,29 +1,19 @@
 {
   "3": {
     "inputs": {
-      "seed": "{{seed}}",
-      "steps": 4,
+      "steps": "{{seed}}",
       "cfg": 1,
-      "sampler_name": "euler",
+      "sampler_name": "euler_ancestral",
       "scheduler": "sgm_uniform",
       "denoise": 1,
-      "model": ["4", 0],
-      "positive": ["6", 0],
-      "negative": ["7", 0],
+      "model": ["11", 0],
+      "positive": ["23", 0],
+      "negative": ["24", 0],
       "latent_image": ["5", 0]
     },
     "class_type": "KSampler",
     "_meta": {
       "title": "KSampler"
-    }
-  },
-  "4": {
-    "inputs": {
-      "ckpt_name": "sdxl_lightning_4step.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Load Checkpoint"
     }
   },
   "5": {
@@ -37,43 +27,156 @@
       "title": "Empty Latent Image"
     }
   },
-  "6": {
-    "inputs": {
-      "text": "(((ANIME))) ((MASTERPIECE)) {{prompt}}",
-      "clip": ["4", 1]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "7": {
-    "inputs": {
-      "text": "",
-      "clip": ["4", 1]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
   "8": {
     "inputs": {
-      "samples": ["3", 0],
-      "vae": ["4", 2]
+      "samples": ["3", 0]
     },
     "class_type": "VAEDecode",
     "_meta": {
       "title": "VAE Decode"
     }
   },
-  "14": {
+  "9": {
     "inputs": {
+      "filename_prefix": "ComfyUI",
       "images": ["8", 0]
     },
-    "class_type": "PreviewImage",
+    "class_type": "SaveImage",
     "_meta": {
-      "title": "Preview Image"
+      "title": "Save Image"
+    }
+  },
+  "11": {
+    "inputs": {
+      "lora_name": "sdxl_lightning_8step_lora.safetensors",
+      "strength_model": 1,
+      "model": ["31", 0]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "17": {
+    "inputs": {
+      "VAE": ["29", 0]
+    },
+    "class_type": "Anything Everywhere",
+    "_meta": {
+      "title": "Vae Everywhere"
+    }
+  },
+  "22": {
+    "inputs": {
+      "seed": 3405907571
+    },
+    "class_type": "Seed Everywhere",
+    "_meta": {
+      "title": "Seed Everywhere"
+    }
+  },
+  "23": {
+    "inputs": {
+      "text": "((MANGA)) ((((masterpiece))) {{prompt}}",
+      "clip": ["31", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "24": {
+    "inputs": {
+      "text": "embedding:negativeXL, embedding:BadNegAnatomyV1neg, embedding:badhandv4, embedding:easynegative, embedding:FastNegativeV2, ",
+      "clip": ["31", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "28": {
+    "inputs": {
+      "merge_method": "Weighted",
+      "normalise_ratios": "Yes",
+      "weight_factor": 1,
+      "model_stack": ["32", 0]
+    },
+    "class_type": "CR Apply Model Merge",
+    "_meta": {
+      "title": "⛏️ CR Apply Model Merge"
+    }
+  },
+  "29": {
+    "inputs": {
+      "vae_name": "sdxl_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "30": {
+    "inputs": {
+      "switch_1": "On",
+      "lora_name_1": "None",
+      "model_weight_1": 0.8,
+      "clip_weight_1": 1,
+      "switch_2": "On",
+      "lora_name_2": "LogoRedmondV2-Logo-LogoRedmAF.safetensors",
+      "model_weight_2": 0.75,
+      "clip_weight_2": 1,
+      "switch_3": "On",
+      "lora_name_3": "None",
+      "model_weight_3": 0.8,
+      "clip_weight_3": 0.8
+    },
+    "class_type": "CR LoRA Stack",
+    "_meta": {
+      "title": "💊 CR LoRA Stack"
+    }
+  },
+  "31": {
+    "inputs": {
+      "model": ["28", 0],
+      "clip": ["28", 1],
+      "lora_stack": ["30", 0]
+    },
+    "class_type": "CR Apply LoRA Stack",
+    "_meta": {
+      "title": "💊 CR Apply LoRA Stack"
+    }
+  },
+  "32": {
+    "inputs": {
+      "switch_1": "On",
+      "ckpt_name1": "DreamShaperXLv21Turbo.safetensors",
+      "model_ratio1": 1,
+      "clip_ratio1": 1,
+      "switch_2": "On",
+      "ckpt_name2": "animagineXLV3_v30.safetensors",
+      "model_ratio2": 0.8,
+      "clip_ratio2": 0.8,
+      "switch_3": "On",
+      "ckpt_name3": "aamXLAnimeMix_v10.safetensors",
+      "model_ratio3": 0.7000000000000001,
+      "clip_ratio3": 0.7000000000000001
+    },
+    "class_type": "CR Model Merge Stack",
+    "_meta": {
+      "title": "⛏️ CR Model Merge Stack"
+    }
+  },
+  "39": {
+    "inputs": {
+      "value": 3405907570,
+      "mode": true,
+      "action": "randomize",
+      "last_seed": 2516178818
+    },
+    "class_type": "GlobalSeed //Inspire",
+    "_meta": {
+      "title": "Global Seed (Inspire)"
     }
   }
 }
