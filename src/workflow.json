@@ -39,7 +39,7 @@
   },
   "6": {
     "inputs": {
-      "text": "{{prompt}}",
+      "text": "(((ANIME))) (((MANGA))) ((MASTERPIECE)) {{prompt}}",
       "clip": ["4", 1]
     },
     "class_type": "CLIPTextEncode",
