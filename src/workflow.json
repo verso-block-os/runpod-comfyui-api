@@ -36,16 +36,6 @@
       "title": "VAE Decode"
     }
   },
-  "9": {
-    "inputs": {
-      "filename_prefix": "ComfyUI",
-      "images": ["8", 0]
-    },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Save Image"
-    }
-  },
   "11": {
     "inputs": {
       "lora_name": "sdxl_lightning_8step_lora.safetensors",
@@ -68,7 +58,7 @@
   },
   "22": {
     "inputs": {
-      "seed": 3405907571
+      "seed": 2685658463
     },
     "class_type": "Seed Everywhere",
     "_meta": {
@@ -169,14 +159,23 @@
   },
   "39": {
     "inputs": {
-      "value": 3405907570,
+      "value": 2685658462,
       "mode": true,
       "action": "randomize",
-      "last_seed": 2516178818
+      "last_seed": 433790331
     },
     "class_type": "GlobalSeed //Inspire",
     "_meta": {
       "title": "Global Seed (Inspire)"
+    }
+  },
+  "41": {
+    "inputs": {
+      "images": ["8", 0]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
     }
   }
 }
