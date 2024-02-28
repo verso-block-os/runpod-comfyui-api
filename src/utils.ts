@@ -112,14 +112,32 @@ export async function getImages(
 }
 
 export const getWorkflow = (prompt: string) => {
+  console.time("getWorkflow");
+  // Function to recursively replace all occurrences of "{{prompt}}"
+  const replacePrompt = (obj: any, promptValue: any) => {
+    Object.keys(obj).forEach((key) => {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        // Recursive call for nested objects
+        replacePrompt(obj[key], promptValue);
+      } else if (typeof obj[key] === "string") {
+        // Replace '{{prompt}}' with promptValue
+        obj[key] = obj[key].replace(/{{prompt}}/g, promptValue);
+      }
+    });
+  };
+
+  // Deep copy ComfyUIWorkflow to avoid mutating the original object
   const workflowCopy = JSON.parse(JSON.stringify(ComfyUIWorkflow));
-  workflowCopy["23"].inputs.text = workflowCopy.someProperty.text.replace(
-    "{{prompt}}",
-    prompt,
+
+  // Replace '{{prompt}}' placeholders with the actual prompt
+  replacePrompt(workflowCopy, prompt);
+
+  // Replace '{{seed}}' with a random seed throughout the workflow
+  replacePrompt(
+    workflowCopy,
+    (Math.floor(Math.random() * 1000000) + 1).toString(),
   );
-  workflowCopy[3].inputs.seed = (
-    Math.floor(Math.random() * 1000000) + 1
-  ).toString();
+  console.timeEnd("getWorkflow");
   return workflowCopy;
 };
 
