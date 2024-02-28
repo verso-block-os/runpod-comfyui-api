@@ -1,7 +1,7 @@
 {
   "3": {
     "inputs": {
-      "steps": "{{seed}}",
+      "steps": 8,
       "cfg": 1,
       "sampler_name": "euler_ancestral",
       "scheduler": "sgm_uniform",
@@ -50,7 +50,7 @@
   },
   "22": {
     "inputs": {
-      "seed": 1044498985
+      "seed": "{{seed}}"
     },
     "class_type": "Seed Everywhere",
     "_meta": {
