@@ -1,6 +1,7 @@
 {
   "3": {
     "inputs": {
+      "seed": "{{seed}}",
       "steps": 8,
       "cfg": 1,
       "sampler_name": "euler_ancestral",
@@ -46,15 +47,6 @@
     "class_type": "LoraLoaderModelOnly",
     "_meta": {
       "title": "LoraLoaderModelOnly"
-    }
-  },
-  "22": {
-    "inputs": {
-      "seed": "{{seed}}"
-    },
-    "class_type": "Seed Everywhere",
-    "_meta": {
-      "title": "Seed Everywhere"
     }
   },
   "23": {
@@ -147,18 +139,6 @@
     "class_type": "CR Model Merge Stack",
     "_meta": {
       "title": "⛏️ CR Model Merge Stack"
-    }
-  },
-  "39": {
-    "inputs": {
-      "value": 1044498984,
-      "mode": true,
-      "action": "randomize",
-      "last_seed": 2685658462
-    },
-    "class_type": "GlobalSeed //Inspire",
-    "_meta": {
-      "title": "Global Seed (Inspire)"
     }
   },
   "41": {
