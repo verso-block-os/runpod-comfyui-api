@@ -112,9 +112,10 @@ export async function getImages(
 }
 
 export const getWorkflow = (prompt: string) => {
+  const safePrompt = JSON.stringify(prompt);
   return JSON.parse(
     JSON.stringify(ComfyUIWorkflow)
-      .replace("{{prompt}}", prompt)
+      .replace("{{prompt}}", safePrompt)
       .replace(
         "{{seed}}",
         (Math.floor(Math.random() * 1000000) + 1).toString(),
