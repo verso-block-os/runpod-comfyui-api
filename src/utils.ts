@@ -112,16 +112,15 @@ export async function getImages(
 }
 
 export const getWorkflow = (prompt: string) => {
-  const safePrompt = JSON.stringify(prompt);
-  console.log(safePrompt);
-  return JSON.parse(
-    JSON.stringify(ComfyUIWorkflow)
-      .replace("{{prompt}}", safePrompt)
-      .replace(
-        "{{seed}}",
-        (Math.floor(Math.random() * 1000000) + 1).toString(),
-      ),
+  const workflowCopy = JSON.parse(JSON.stringify(ComfyUIWorkflow));
+  workflowCopy.someProperty.text = workflowCopy.someProperty.text.replace(
+    "{{prompt}}",
+    prompt,
   );
+  workflowCopy.someProperty.seed = (
+    Math.floor(Math.random() * 1000000) + 1
+  ).toString();
+  return workflowCopy;
 };
 
 export const getWebsocketClient = (clientId: string) => {
