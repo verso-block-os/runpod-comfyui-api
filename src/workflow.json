@@ -58,7 +58,7 @@
   },
   "30": {
     "inputs": {
-      "unet_name": "stage_c_bf16.safetensors"
+      "unet_name": "stage_c.safetensors"
     },
     "class_type": "UNETLoader",
     "_meta": {
@@ -67,7 +67,7 @@
   },
   "32": {
     "inputs": {
-      "unet_name": "stage_b_bf16.safetensors"
+      "unet_name": "stage_b.safetensors"
     },
     "class_type": "UNETLoader",
     "_meta": {
