@@ -113,11 +113,11 @@ export async function getImages(
 
 export const getWorkflow = (prompt: string) => {
   const workflowCopy = JSON.parse(JSON.stringify(ComfyUIWorkflow));
-  workflowCopy.someProperty.text = workflowCopy.someProperty.text.replace(
+  workflowCopy["23"].inputs.text = workflowCopy.someProperty.text.replace(
     "{{prompt}}",
     prompt,
   );
-  workflowCopy.someProperty.seed = (
+  workflowCopy[3].inputs.seed = (
     Math.floor(Math.random() * 1000000) + 1
   ).toString();
   return workflowCopy;
