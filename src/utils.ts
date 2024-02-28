@@ -113,6 +113,7 @@ export async function getImages(
 
 export const getWorkflow = (prompt: string) => {
   const safePrompt = JSON.stringify(prompt);
+  console.log(safePrompt);
   return JSON.parse(
     JSON.stringify(ComfyUIWorkflow)
       .replace("{{prompt}}", safePrompt)
