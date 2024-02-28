@@ -94,7 +94,7 @@
     "inputs": {
       "switch_1": "On",
       "lora_name_1": "LogoRedmondV2-Logo-LogoRedmAF.safetensors",
-      "model_weight_1": 0.8,
+      "model_weight_1": 1,
       "clip_weight_1": 1,
       "switch_2": "On",
       "lora_name_2": "None",
