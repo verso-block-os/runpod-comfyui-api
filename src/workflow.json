@@ -29,7 +29,8 @@
   },
   "8": {
     "inputs": {
-      "samples": ["3", 0]
+      "samples": ["3", 0],
+      "vae": ["29", 0]
     },
     "class_type": "VAEDecode",
     "_meta": {
@@ -47,18 +48,9 @@
       "title": "LoraLoaderModelOnly"
     }
   },
-  "17": {
-    "inputs": {
-      "VAE": ["29", 0]
-    },
-    "class_type": "Anything Everywhere",
-    "_meta": {
-      "title": "Vae Everywhere"
-    }
-  },
   "22": {
     "inputs": {
-      "seed": 2685658463
+      "seed": 1044498985
     },
     "class_type": "Seed Everywhere",
     "_meta": {
@@ -159,10 +151,10 @@
   },
   "39": {
     "inputs": {
-      "value": 2685658462,
+      "value": 1044498984,
       "mode": true,
       "action": "randomize",
-      "last_seed": 433790331
+      "last_seed": 2685658462
     },
     "class_type": "GlobalSeed //Inspire",
     "_meta": {
