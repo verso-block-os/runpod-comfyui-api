@@ -51,7 +51,7 @@
   },
   "23": {
     "inputs": {
-      "text": "{{prompt}}",
+      "text": "(((anime))),  ((((masterpiece))), {{prompt}}",
       "clip": ["31", 1]
     },
     "class_type": "CLIPTextEncode",
