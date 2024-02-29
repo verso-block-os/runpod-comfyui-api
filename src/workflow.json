@@ -3,7 +3,7 @@
     "inputs": {
       "seed": "{{seed}}",
       "steps": 8,
-      "cfg": 1,
+      "cfg": 2,
       "sampler_name": "euler_ancestral",
       "scheduler": "sgm_uniform",
       "denoise": 1,
@@ -51,7 +51,7 @@
   },
   "23": {
     "inputs": {
-      "text": "((MANGA)) ((((masterpiece))) {{prompt}}",
+      "text": "(((anime))),  ((((masterpiece))), {{prompt}}",
       "clip": ["31", 1]
     },
     "class_type": "CLIPTextEncode",
@@ -61,7 +61,7 @@
   },
   "24": {
     "inputs": {
-      "text": "embedding:negativeXL, embedding:BadNegAnatomyV1neg, embedding:badhandv4, embedding:easynegative, embedding:FastNegativeV2, ",
+      "text": "6fingers, 7fingers, badhands, extra fingers,, weird hands, ugly hands, mutated, deformed, exta limbs, missing limbs, 3legs, 3hands,embedding:negativeXL, ",
       "clip": ["31", 1]
     },
     "class_type": "CLIPTextEncode",
@@ -93,17 +93,17 @@
   "30": {
     "inputs": {
       "switch_1": "On",
-      "lora_name_1": "LogoRedmondV2-Logo-LogoRedmAF.safetensors",
-      "model_weight_1": 1,
+      "lora_name_1": "BetterTextRedmond.safetensors",
+      "model_weight_1": 0.7000000000000001,
       "clip_weight_1": 1,
       "switch_2": "On",
-      "lora_name_2": "None",
-      "model_weight_2": 0.75,
+      "lora_name_2": "goodhands_Beta_Gtonero.safetensors",
+      "model_weight_2": 0.7000000000000001,
       "clip_weight_2": 1,
-      "switch_3": "On",
-      "lora_name_3": "None",
-      "model_weight_3": 0.8,
-      "clip_weight_3": 0.8
+      "switch_3": "Off",
+      "lora_name_3": "RealismControl.safetensors",
+      "model_weight_3": 0.6,
+      "clip_weight_3": 1
     },
     "class_type": "CR LoRA Stack",
     "_meta": {
@@ -129,19 +129,19 @@
       "clip_ratio1": 1,
       "switch_2": "On",
       "ckpt_name2": "animagineXLV3_v30.safetensors",
-      "model_ratio2": 0.8,
-      "clip_ratio2": 0.8,
+      "model_ratio2": 0.58,
+      "clip_ratio2": 1,
       "switch_3": "On",
       "ckpt_name3": "aamXLAnimeMix_v10.safetensors",
-      "model_ratio3": 0.7000000000000001,
-      "clip_ratio3": 0.7000000000000001
+      "model_ratio3": 0.58,
+      "clip_ratio3": 1
     },
     "class_type": "CR Model Merge Stack",
     "_meta": {
       "title": "⛏️ CR Model Merge Stack"
     }
   },
-  "41": {
+  "52": {
     "inputs": {
       "images": ["8", 0]
     },
