@@ -93,15 +93,15 @@
   "30": {
     "inputs": {
       "switch_1": "On",
-      "lora_name_1": "BetterTextRedmond.safetensors",
+      "lora_name_1": "more_details.safetensors",
       "model_weight_1": 0.7000000000000001,
       "clip_weight_1": 1,
       "switch_2": "On",
-      "lora_name_2": "goodhands_Beta_Gtonero.safetensors",
+      "lora_name_2": "DetailedEyes_XLv3.safetensors",
       "model_weight_2": 0.7000000000000001,
       "clip_weight_2": 1,
-      "switch_3": "Off",
-      "lora_name_3": "RealismControl.safetensors",
+      "switch_3": "On",
+      "lora_name_3": "aesthetic_anime_v1s.safetensors",
       "model_weight_3": 0.6,
       "clip_weight_3": 1
     },
